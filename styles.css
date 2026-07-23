@@ -629,19 +629,11 @@ a.partner-logo:focus-visible {
 
 .timeline {
   position: relative;
+  display: grid;
+  gap: 2.2rem;
   margin: 2.5rem 0 0;
   padding: 0;
   list-style: none;
-}
-
-.timeline::before {
-  position: absolute;
-  top: 0.7rem;
-  bottom: 0.7rem;
-  left: 7px;
-  width: 1px;
-  background: var(--line);
-  content: "";
 }
 
 .timeline li {
@@ -649,20 +641,42 @@ a.partner-logo:focus-visible {
   display: grid;
   grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
   gap: 1.5rem;
-  padding: 0 0 2.4rem 2.3rem;
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 14px 30px rgba(15, 37, 30, 0.07);
 }
 
 .timeline li::before {
   position: absolute;
-  top: 0.45rem;
-  left: 0;
-  width: 15px;
-  height: 15px;
-  border: 4px solid var(--paper);
-  border-radius: 50%;
+  z-index: 1;
+  bottom: -0.55rem;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 3px solid var(--surface);
+  border-radius: 2px;
   background: var(--green);
-  box-shadow: 0 0 0 1px var(--green);
+  box-shadow: 0 0 0 1px var(--green-dark);
   content: "";
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.timeline li:not(:last-child)::after {
+  position: absolute;
+  bottom: -2.2rem;
+  left: 50%;
+  width: 2px;
+  height: 1.65rem;
+  background: repeating-linear-gradient(to bottom, var(--green) 0 0.42rem, transparent 0.42rem 0.72rem);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.timeline li:last-child::before {
+  display: none;
 }
 
 .timeline time {
@@ -1090,7 +1104,8 @@ a.partner-logo:focus-visible {
 
   .timeline li {
     grid-template-columns: 1fr;
-    gap: 0.35rem;
+    gap: 0.5rem;
+    padding: 1.2rem;
   }
 
   .footer-meta {
