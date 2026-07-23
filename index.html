@@ -3,9 +3,1631 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test</title>
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="data:,">
+    <title>DATIpilot BioBlock Innovationscommunity</title>
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #171c20;
+        --graphite: #555e65;
+        --muted: #b9c0c4;
+        --quiet: #d8dddf;
+        --line: #e7e9ea;
+        --line-strong: #cbd1d4;
+        --emerald: #078a50;
+        --emerald-soft: #b9dfcf;
+        --emerald-wash: #eef8f3;
+        --gutter: clamp(1rem, 4vw, 5.25rem);
+        --section-gap: clamp(3rem, 8vw, 8rem);
+        --header-height: 8.6rem;
+        --radius: 0.45rem;
+        --motion: 540ms cubic-bezier(0.22, 1, 0.36, 1);
+        --pointer-x: 0;
+        --pointer-y: 0;
+        --scroll-progress: 0;
+        --view-depth: 0;
+        --frame-x: 0px;
+        --frame-y: 0px;
+        --frame-scale: 1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-width: 20rem;
+        background: var(--paper);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 20rem;
+        min-height: 100svh;
+        overflow-x: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      button:focus-visible {
+        outline: 2px solid var(--emerald);
+        outline-offset: 4px;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        min-height: var(--header-height);
+        border-bottom: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(16px);
+      }
+
+      .header-shell {
+        position: relative;
+        display: grid;
+        grid-template-rows: 4.2rem 4.4rem;
+        min-height: var(--header-height);
+        container-type: inline-size;
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: var(--gutter);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.42ch;
+        max-width: calc(100vw - 6.5rem);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: clamp(0.84rem, 1.25vw, 1.1rem);
+        font-weight: 620;
+        letter-spacing: -0.045em;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .brand-accent {
+        color: var(--emerald);
+      }
+
+      .nav-wrap {
+        position: relative;
+        min-width: 0;
+        padding-inline: var(--gutter);
+      }
+
+      .nav-list {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        width: max-content;
+        min-width: 58%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        gap: clamp(1rem, 3.4vw, 3.5rem);
+      }
+
+      .nav-list::after {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: var(--rail-width, 0);
+        height: 2px;
+        background: var(--emerald);
+        content: "";
+        opacity: var(--rail-opacity, 1);
+        transform: translateX(var(--rail-left, 0));
+        transition:
+          width var(--motion),
+          transform var(--motion),
+          opacity 180ms ease;
+      }
+
+      .nav-item {
+        display: flex;
+        flex: 0 0 auto;
+      }
+
+      .tab {
+        position: relative;
+        display: inline-flex;
+        min-height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        font-size: clamp(0.78rem, 1.02vw, 0.95rem);
+        font-weight: 470;
+        letter-spacing: -0.015em;
+        white-space: nowrap;
+        transition:
+          color 180ms ease,
+          opacity 180ms ease;
+      }
+
+      .tab:hover {
+        color: var(--emerald);
+      }
+
+      .tab:focus-visible {
+        outline: none;
+        box-shadow: inset 0 -5px 0 var(--emerald-soft);
+      }
+
+      .tab[aria-selected="true"] {
+        color: var(--emerald);
+        font-weight: 650;
+      }
+
+      .menu-button {
+        display: none;
+        width: 2.85rem;
+        height: 2.85rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius);
+        background: var(--paper);
+        cursor: pointer;
+      }
+
+      .menu-button svg {
+        width: 1.35rem;
+        height: 1.35rem;
+        overflow: visible;
+      }
+
+      .menu-button line {
+        transform-origin: center;
+        transition:
+          transform 240ms ease,
+          opacity 180ms ease;
+      }
+
+      .menu-button[aria-expanded="true"] line:first-child {
+        transform: translateY(5px) rotate(45deg);
+      }
+
+      .menu-button[aria-expanded="true"] line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-button[aria-expanded="true"] line:last-child {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+
+      .site-header.is-compact {
+        --header-height: 4.65rem;
+      }
+
+      .site-header.is-compact .header-shell {
+        display: block;
+        min-height: var(--header-height);
+      }
+
+      .site-header.is-compact .brand-row {
+        min-height: var(--header-height);
+      }
+
+      .site-header.is-compact .menu-button {
+        display: inline-flex;
+      }
+
+      .site-header.is-compact .nav-wrap {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: var(--gutter);
+        width: min(21rem, calc(100vw - (2 * var(--gutter))));
+        padding: 0;
+        pointer-events: none;
+      }
+
+      .site-header.is-compact .nav-list {
+        display: grid;
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        justify-content: stretch;
+        gap: 0;
+        padding: 0.65rem;
+        border: 1px solid var(--line-strong);
+        border-radius: calc(var(--radius) + 0.2rem);
+        background: var(--paper);
+        box-shadow: 0 1rem 3rem rgba(23, 28, 32, 0.1);
+        opacity: 0;
+        transform: translateY(-0.6rem);
+        transition:
+          opacity 180ms ease,
+          transform 240ms ease;
+      }
+
+      .site-header.is-compact.is-menu-open .nav-wrap {
+        pointer-events: auto;
+      }
+
+      .site-header.is-compact.is-menu-open .nav-list {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .site-header.is-compact .nav-list::after {
+        display: none;
+      }
+
+      .site-header.is-compact .nav-item,
+      .site-header.is-compact .tab {
+        width: 100%;
+      }
+
+      .site-header.is-compact .tab {
+        justify-content: flex-start;
+        min-height: 3rem;
+        padding-inline: 0.8rem;
+        border-radius: 0.3rem;
+        font-size: 0.9rem;
+      }
+
+      .site-header.is-compact .tab[aria-selected="true"] {
+        background: var(--emerald-wash);
+      }
+
+      main {
+        position: relative;
+        min-height: calc(100svh - var(--header-height));
+        container-type: inline-size;
+        isolation: isolate;
+      }
+
+      .network-canvas {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        width: min(68rem, 72vw);
+        height: min(38rem, calc(100dvh - var(--header-height)));
+        min-height: 30rem;
+        overflow: hidden;
+        pointer-events: none;
+        color: var(--line-strong);
+        opacity: 1;
+        transition:
+          width var(--motion),
+          height var(--motion),
+          opacity 260ms ease;
+      }
+
+      .network-canvas::before {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(90deg, var(--paper) 0%, transparent 25%),
+          linear-gradient(0deg, var(--paper) 0%, transparent 12%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .ledger-svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .ledger-grid,
+      .ledger-paths,
+      .ledger-nodes {
+        transform-box: view-box;
+        transform-origin: center;
+        transition: transform var(--motion);
+      }
+
+      .ledger-grid {
+        transform:
+          translate(
+            calc(var(--frame-x) + (var(--pointer-x) * -3px)),
+            calc(var(--frame-y) + (var(--pointer-y) * -2px) + (var(--scroll-progress) * 8px))
+          )
+          scale(var(--frame-scale));
+      }
+
+      .ledger-paths {
+        transform:
+          translate(
+            calc(var(--frame-x) + (var(--pointer-x) * 7px)),
+            calc(var(--frame-y) + (var(--pointer-y) * 5px) + (var(--scroll-progress) * 13px))
+          )
+          scale(var(--frame-scale));
+      }
+
+      .ledger-nodes {
+        transform:
+          translate(
+            calc(var(--frame-x) + (var(--pointer-x) * 13px)),
+            calc(var(--frame-y) + (var(--pointer-y) * 9px) + (var(--scroll-progress) * 18px))
+          )
+          scale(var(--frame-scale));
+      }
+
+      .grid-line {
+        fill: none;
+        stroke: var(--line);
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+      }
+
+      .grid-line.dotted {
+        stroke-dasharray: 2 8;
+      }
+
+      .chain-line {
+        fill: none;
+        stroke: var(--line-strong);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.35;
+        vector-effect: non-scaling-stroke;
+        transition:
+          stroke 420ms ease,
+          opacity 420ms ease;
+      }
+
+      .chain-line.accent {
+        stroke: var(--emerald-soft);
+      }
+
+      .network-node {
+        fill: var(--paper);
+        stroke: var(--graphite);
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+        transition:
+          fill 320ms ease,
+          stroke 320ms ease,
+          opacity 320ms ease;
+      }
+
+      .network-node.accent {
+        stroke: var(--emerald);
+      }
+
+      .network-dot {
+        fill: var(--graphite);
+        transition: fill 320ms ease;
+      }
+
+      .network-dot.accent {
+        fill: var(--emerald);
+      }
+
+      body[data-view="home"] {
+        --frame-x: 0px;
+        --frame-y: 0px;
+        --frame-scale: 1;
+        --view-depth: 0.15;
+      }
+
+      body[data-view="events"] {
+        --frame-x: -62px;
+        --frame-y: 72px;
+        --frame-scale: 1.12;
+        --view-depth: 0.35;
+      }
+
+      body[data-view="community"] {
+        --frame-x: 52px;
+        --frame-y: -34px;
+        --frame-scale: 1.22;
+        --view-depth: 0.6;
+      }
+
+      body[data-view="roadmaps-projects"] {
+        --frame-x: -96px;
+        --frame-y: -18px;
+        --frame-scale: 1.08;
+        --view-depth: 0.45;
+      }
+
+      body[data-view="knowledge-center"] {
+        --frame-x: 12px;
+        --frame-y: 58px;
+        --frame-scale: 0.96;
+        --view-depth: 0.25;
+      }
+
+      body[data-view="open-call-2025"] {
+        --frame-x: -28px;
+        --frame-y: -70px;
+        --frame-scale: 1.28;
+        --view-depth: 0.75;
+      }
+
+      .view-panel[hidden] {
+        display: none;
+      }
+
+      .view-panel {
+        min-height: calc(100svh - var(--header-height));
+        animation: panel-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .view-stage {
+        display: grid;
+        min-height: clamp(
+          34rem,
+          calc(100dvh - var(--header-height) - 8rem),
+          38rem
+        );
+        grid-template-columns: minmax(16rem, 0.76fr) minmax(24rem, 1.24fr);
+        align-items: center;
+        gap: clamp(2rem, 5vw, 6rem);
+        padding: clamp(3.5rem, 8dvh, 7rem) var(--gutter);
+      }
+
+      .placeholder-copy {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: min(100%, 31rem);
+        gap: clamp(0.8rem, 1.7vw, 1.2rem);
+      }
+
+      .bar {
+        display: block;
+        height: clamp(0.48rem, 0.82vw, 0.7rem);
+        border-radius: 0.14rem;
+        background: var(--quiet);
+      }
+
+      .bar.dark {
+        height: clamp(1rem, 1.55vw, 1.45rem);
+        background: var(--ink);
+        box-shadow: inset 0 -0.18rem 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .bar.graphite {
+        background: var(--graphite);
+      }
+
+      .bar.short {
+        width: 18%;
+      }
+
+      .bar.medium {
+        width: 66%;
+      }
+
+      .bar.long {
+        width: 92%;
+      }
+
+      .bar.full {
+        width: 100%;
+      }
+
+      .placeholder-row {
+        display: flex;
+        gap: clamp(0.6rem, 1.5vw, 1.2rem);
+        padding-top: 1.2rem;
+      }
+
+      .placeholder-row .bar {
+        width: clamp(3rem, 8vw, 6.8rem);
+      }
+
+      .outline-control {
+        width: clamp(10rem, 18vw, 14rem);
+        height: clamp(3.1rem, 5vw, 4.2rem);
+        margin-top: clamp(1.8rem, 4vw, 3.5rem);
+        border: 1px solid var(--emerald);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .stage-art {
+        position: relative;
+        z-index: 2;
+        min-width: 0;
+        min-height: clamp(18rem, 30vw, 27rem);
+      }
+
+      .continuation {
+        display: grid;
+        min-height: clamp(19rem, 32vw, 29rem);
+        grid-template-columns: minmax(16rem, 0.82fr) minmax(20rem, 1.18fr);
+        align-items: center;
+        gap: clamp(2rem, 6vw, 7rem);
+        padding: clamp(2.5rem, 5vw, 5rem) var(--gutter);
+        border-top: 1px solid var(--line-strong);
+        background: var(--paper);
+      }
+
+      .empty-frame {
+        position: relative;
+        min-height: clamp(12rem, 24vw, 20rem);
+        border: 1px solid var(--line-strong);
+        border-radius: 0.18rem;
+        background:
+          linear-gradient(
+            to top right,
+            transparent calc(50% - 0.5px),
+            var(--line) 50%,
+            transparent calc(50% + 0.5px)
+          ),
+          linear-gradient(
+            to bottom right,
+            transparent calc(50% - 0.5px),
+            var(--line) 50%,
+            transparent calc(50% + 0.5px)
+          );
+      }
+
+      .continuation-copy {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .tile-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(0.8rem, 2vw, 1.5rem);
+        margin-top: 1.8rem;
+      }
+
+      .empty-tile {
+        aspect-ratio: 1.35 / 1;
+        border: 1px solid var(--line-strong);
+        border-radius: 0.18rem;
+        background:
+          linear-gradient(
+            to top right,
+            transparent calc(50% - 0.5px),
+            var(--line) 50%,
+            transparent calc(50% + 0.5px)
+          );
+      }
+
+      .event-rail {
+        display: grid;
+        width: min(100%, 43rem);
+        grid-template-columns: repeat(4, minmax(4.5rem, 1fr));
+        align-items: center;
+        gap: 0;
+        margin: auto;
+      }
+
+      .event-node {
+        position: relative;
+        aspect-ratio: 1;
+        max-width: 7rem;
+        justify-self: center;
+        width: clamp(4.2rem, 8vw, 7rem);
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.84);
+      }
+
+      .event-node::after {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: calc((43rem / 4) - clamp(4.2rem, 8vw, 7rem));
+        height: 1px;
+        background: var(--emerald-soft);
+        content: "";
+      }
+
+      .event-node:last-child::after {
+        display: none;
+      }
+
+      .event-node:nth-child(2) {
+        border-color: var(--emerald);
+      }
+
+      .community-layout,
+      .file-layout {
+        grid-template-columns: minmax(17rem, 0.9fr) minmax(21rem, 1.1fr);
+      }
+
+      .member-field {
+        position: relative;
+        width: min(100%, 41rem);
+        min-height: clamp(23rem, 40vw, 35rem);
+        margin-inline: auto;
+      }
+
+      .member {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .member::after {
+        width: 23%;
+        height: 23%;
+        border: 1px solid var(--emerald-soft);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .member.large {
+        top: 12%;
+        left: 28%;
+        width: clamp(9.5rem, 19vw, 16rem);
+        aspect-ratio: 0.82;
+        border-radius: 50% 50% 44% 44%;
+      }
+
+      .member.small-a {
+        top: 4%;
+        right: 2%;
+        width: clamp(4rem, 8vw, 6.8rem);
+        aspect-ratio: 1;
+      }
+
+      .member.small-b {
+        right: 8%;
+        bottom: 7%;
+        width: clamp(3.8rem, 7vw, 5.8rem);
+        aspect-ratio: 1;
+      }
+
+      .member.small-c {
+        bottom: 2%;
+        left: 4%;
+        width: clamp(4.4rem, 9vw, 7.4rem);
+        aspect-ratio: 1;
+      }
+
+      .member-link {
+        position: absolute;
+        height: 1px;
+        background: var(--emerald-soft);
+        transform-origin: left;
+      }
+
+      .member-link.a {
+        top: 29%;
+        left: 59%;
+        width: 29%;
+        transform: rotate(-18deg);
+      }
+
+      .member-link.b {
+        top: 61%;
+        left: 58%;
+        width: 32%;
+        transform: rotate(26deg);
+      }
+
+      .member-link.c {
+        top: 70%;
+        left: 17%;
+        width: 29%;
+        transform: rotate(-24deg);
+      }
+
+      .upload-placeholder {
+        position: relative;
+        display: grid;
+        width: min(100%, 31rem);
+        min-height: clamp(16rem, 31vw, 25rem);
+        place-items: center;
+        overflow: hidden;
+        border: 1px dashed var(--emerald);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(var(--paper), var(--paper)) padding-box,
+          var(--emerald-wash);
+        color: var(--emerald);
+        cursor: not-allowed;
+      }
+
+      .upload-placeholder::before,
+      .upload-placeholder::after {
+        position: absolute;
+        width: 38%;
+        aspect-ratio: 0.75;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        content: "";
+        opacity: 0.72;
+        transform: rotate(-8deg) translate(-48%, 8%);
+      }
+
+      .upload-placeholder::after {
+        transform: rotate(7deg) translate(52%, 13%);
+      }
+
+      .upload-placeholder svg {
+        position: relative;
+        z-index: 2;
+        width: clamp(3rem, 6vw, 4.8rem);
+        height: clamp(3rem, 6vw, 4.8rem);
+      }
+
+      .upload-placeholder[aria-disabled="true"] {
+        opacity: 0.9;
+      }
+
+      .upload-placeholder:focus-visible {
+        outline: 2px solid var(--emerald);
+        outline-offset: 5px;
+      }
+
+      .roadmap-field {
+        position: relative;
+        min-height: clamp(22rem, 38vw, 34rem);
+      }
+
+      .roadmap-line {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 87%;
+        height: 1px;
+        background: var(--line-strong);
+      }
+
+      .roadmap-card {
+        position: absolute;
+        width: clamp(6.5rem, 13vw, 11rem);
+        aspect-ratio: 1.25;
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .roadmap-card:nth-child(2) {
+        top: 14%;
+        left: 7%;
+      }
+
+      .roadmap-card:nth-child(3) {
+        top: 57%;
+        left: 37%;
+        border-color: var(--emerald);
+      }
+
+      .roadmap-card:nth-child(4) {
+        top: 9%;
+        right: 4%;
+      }
+
+      .knowledge-field {
+        display: grid;
+        width: min(100%, 43rem);
+        min-height: clamp(21rem, 34vw, 30rem);
+        grid-template-columns: 0.85fr 1.25fr 0.7fr;
+        align-items: stretch;
+        gap: clamp(0.7rem, 2vw, 1.4rem);
+        margin-inline: auto;
+      }
+
+      .knowledge-column {
+        display: grid;
+        grid-auto-rows: minmax(2.6rem, 1fr);
+        gap: clamp(0.7rem, 1.6vw, 1.2rem);
+      }
+
+      .knowledge-block {
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.86);
+      }
+
+      .knowledge-column:nth-child(2) .knowledge-block:first-child,
+      .knowledge-column:nth-child(3) .knowledge-block:last-child {
+        border-color: var(--emerald);
+      }
+
+      .file-library {
+        position: relative;
+        display: grid;
+        width: min(100%, 42rem);
+        min-height: clamp(23rem, 38vw, 33rem);
+        align-content: center;
+        gap: clamp(0.75rem, 1.6vw, 1.1rem);
+        margin-inline: auto;
+      }
+
+      .file-library::before,
+      .file-library::after {
+        position: absolute;
+        z-index: -1;
+        top: 31%;
+        left: -12%;
+        width: 24%;
+        height: 1px;
+        background: var(--emerald-soft);
+        content: "";
+      }
+
+      .file-library::after {
+        top: 68%;
+        left: auto;
+        right: -8%;
+        width: 20%;
+      }
+
+      .file-preview {
+        position: relative;
+        display: grid;
+        min-height: clamp(11rem, 20vw, 16rem);
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius);
+        background: var(--paper);
+      }
+
+      .file-preview::before {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, transparent 49.9%, var(--line) 50%, transparent 50.1%),
+          linear-gradient(0deg, transparent 49.9%, var(--line) 50%, transparent 50.1%);
+        content: "";
+        opacity: 0.7;
+      }
+
+      .file-sheet {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        width: clamp(6.2rem, 11vw, 9rem);
+        aspect-ratio: 0.78;
+        align-content: center;
+        gap: 0.6rem;
+        padding: 1.2rem;
+        border: 1px solid var(--emerald);
+        background: rgba(255, 255, 255, 0.94);
+      }
+
+      .file-sheet::after,
+      .file-icon::after {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        width: 25%;
+        aspect-ratio: 1;
+        border-bottom: 1px solid var(--line-strong);
+        border-left: 1px solid var(--line-strong);
+        background: var(--paper);
+        content: "";
+      }
+
+      .file-list {
+        display: grid;
+        gap: clamp(0.55rem, 1vw, 0.75rem);
+      }
+
+      .file-row {
+        display: grid;
+        min-height: clamp(3.4rem, 5vw, 4.2rem);
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: clamp(0.75rem, 1.8vw, 1.15rem);
+        padding: 0.65rem clamp(0.75rem, 1.7vw, 1.1rem);
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .file-row:nth-child(2) {
+        border-color: var(--emerald-soft);
+      }
+
+      .file-icon {
+        position: relative;
+        width: clamp(1.55rem, 2.8vw, 2.1rem);
+        aspect-ratio: 0.78;
+        border: 1px solid var(--graphite);
+        background: var(--paper);
+      }
+
+      .file-lines {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .file-lines .bar:first-child {
+        width: min(100%, 18rem);
+        background: var(--graphite);
+      }
+
+      .file-lines .bar:last-child {
+        width: min(62%, 9rem);
+        height: 0.38rem;
+      }
+
+      .file-view {
+        display: grid;
+        width: clamp(2rem, 3.5vw, 2.5rem);
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid var(--emerald-soft);
+        border-radius: 50%;
+        color: var(--emerald);
+      }
+
+      .file-view svg {
+        width: 58%;
+        height: 58%;
+      }
+
+      @keyframes panel-enter {
+        from {
+          opacity: 0;
+          transform: translateY(0.8rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes draw-path {
+        from {
+          stroke-dashoffset: 1200;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .chain-line {
+        stroke-dasharray: 1200;
+        stroke-dashoffset: 0;
+        animation: draw-path 1300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @container (max-width: 58rem) {
+        .view-stage,
+        .community-layout,
+        .file-layout {
+          grid-template-columns: minmax(15rem, 0.9fr) minmax(18rem, 1.1fr);
+        }
+      }
+
+      @media (max-width: 48rem) {
+        .network-canvas {
+          top: 16rem;
+          width: 100vw;
+          height: 38rem;
+          min-height: 0;
+          opacity: 0.78;
+        }
+
+        .network-canvas::before {
+          background:
+            linear-gradient(180deg, var(--paper) 0%, transparent 20%),
+            linear-gradient(0deg, var(--paper) 0%, transparent 14%);
+        }
+
+        .view-stage,
+        .community-layout,
+        .file-layout {
+          min-height: auto;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 2.5rem;
+          padding-block: clamp(3.5rem, 9dvh, 6rem);
+        }
+
+        .placeholder-copy {
+          width: min(100%, 32rem);
+        }
+
+        .stage-art {
+          min-height: clamp(20rem, 88vw, 31rem);
+        }
+
+        .continuation {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .event-rail {
+          width: 100%;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2.8rem 0;
+        }
+
+        .event-node::after {
+          width: calc(50vw - (2 * var(--gutter)) - clamp(4.2rem, 14vw, 7rem));
+        }
+
+        .event-node:nth-child(2)::after {
+          display: none;
+        }
+
+        .knowledge-field {
+          grid-template-columns: repeat(3, minmax(4.5rem, 1fr));
+        }
+
+        .file-library::before,
+        .file-library::after {
+          display: none;
+        }
+
+        .file-library {
+          overflow: hidden;
+        }
+      }
+
+      @media (max-width: 30rem) {
+        .brand {
+          max-width: calc(100vw - 5.5rem);
+          font-size: clamp(0.68rem, 3.1vw, 0.84rem);
+          gap: 0.22ch;
+        }
+
+        .tile-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .tile-row .empty-tile:last-child {
+          display: none;
+        }
+
+        .member.large {
+          left: 23%;
+        }
+
+        .upload-placeholder {
+          min-height: 15rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .ledger-grid,
+        .ledger-paths,
+        .ledger-nodes {
+          transform: translate(var(--frame-x), var(--frame-y)) scale(var(--frame-scale));
+        }
+      }
+    </style>
   </head>
-  <body>
-    <p>Test</p>
+  <body data-view="home">
+    <header class="site-header" id="site-header">
+      <div class="header-shell" id="header-shell">
+        <div class="brand-row">
+          <div class="brand">
+            <span>DATIpilot</span>
+            <span class="brand-accent">BioBlock</span>
+            <span>Innovationscommunity</span>
+          </div>
+          <button
+            class="menu-button"
+            id="menu-button"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="3" y1="7" x2="21" y2="7" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="3" y1="17" x2="21" y2="17" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+        </div>
+        <nav class="nav-wrap" aria-label="Primary navigation">
+          <ul class="nav-list" id="primary-navigation" role="tablist" aria-label="Site views">
+            <li class="nav-item">
+              <button class="tab" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0" data-view="home">Home</button>
+            </li>
+            <li class="nav-item">
+              <button class="tab" id="tab-events" type="button" role="tab" aria-selected="false" aria-controls="panel-events" tabindex="-1" data-view="events">Events</button>
+            </li>
+            <li class="nav-item">
+              <button class="tab" id="tab-community" type="button" role="tab" aria-selected="false" aria-controls="panel-community" tabindex="-1" data-view="community">Community</button>
+            </li>
+            <li class="nav-item">
+              <button class="tab" id="tab-roadmaps-projects" type="button" role="tab" aria-selected="false" aria-controls="panel-roadmaps-projects" tabindex="-1" data-view="roadmaps-projects">Roadmaps &amp; Projects</button>
+            </li>
+            <li class="nav-item">
+              <button class="tab" id="tab-knowledge-center" type="button" role="tab" aria-selected="false" aria-controls="panel-knowledge-center" tabindex="-1" data-view="knowledge-center">Knowledge Center</button>
+            </li>
+            <li class="nav-item">
+              <button class="tab" id="tab-open-call-2025" type="button" role="tab" aria-selected="false" aria-controls="panel-open-call-2025" tabindex="-1" data-view="open-call-2025">Open Call 2025</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="network-canvas" aria-hidden="true">
+        <svg class="ledger-svg" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid slice">
+          <g class="ledger-grid">
+            <path class="grid-line" d="M90 0V720M300 0V720M510 0V720M720 0V720M930 0V720"/>
+            <path class="grid-line" d="M0 140H1000M0 350H1000M0 560H1000"/>
+            <path class="grid-line dotted" d="M0 245H1000M0 465H1000M200 0V720M615 0V720M830 0V720"/>
+          </g>
+          <g class="ledger-paths">
+            <path class="chain-line" d="M42 498H185C245 498 243 414 304 414H386C450 414 431 328 498 328H562"/>
+            <path class="chain-line accent" d="M562 328H656C717 328 693 254 760 254H952"/>
+            <path class="chain-line" d="M562 328H640C704 328 673 419 742 419H835C899 419 864 506 938 506H1000"/>
+            <path class="chain-line" d="M398 414V349C398 287 458 301 458 238V171C458 119 512 126 512 76"/>
+            <path class="chain-line accent" d="M760 254V187C760 142 813 157 813 102H934"/>
+            <path class="chain-line" d="M835 419V366C835 324 887 342 887 302H1000"/>
+          </g>
+          <g class="ledger-nodes">
+            <circle class="network-dot" cx="42" cy="498" r="3"/>
+            <rect class="network-node" x="177" y="490" width="16" height="16"/>
+            <rect class="network-node accent" x="296" y="406" width="16" height="16"/>
+            <rect class="network-node" x="390" y="406" width="16" height="16"/>
+            <rect class="network-node accent" x="450" y="320" width="16" height="16"/>
+            <rect class="network-node accent" x="554" y="320" width="16" height="16"/>
+            <rect class="network-node" x="632" y="411" width="16" height="16"/>
+            <rect class="network-node accent" x="734" y="411" width="16" height="16"/>
+            <rect class="network-node" x="827" y="411" width="16" height="16"/>
+            <rect class="network-node" x="930" y="498" width="16" height="16"/>
+            <rect class="network-node" x="752" y="246" width="16" height="16"/>
+            <rect class="network-node accent" x="805" y="94" width="16" height="16"/>
+            <rect class="network-node" x="926" y="94" width="16" height="16"/>
+            <rect class="network-node" x="450" y="230" width="16" height="16"/>
+            <rect class="network-node accent" x="504" y="68" width="16" height="16"/>
+            <circle class="network-dot accent" cx="952" cy="254" r="3"/>
+            <circle class="network-dot" cx="887" cy="302" r="3"/>
+            <circle class="network-dot accent" cx="1000" cy="506" r="3"/>
+          </g>
+        </svg>
+      </div>
+
+      <section class="view-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" data-panel="home">
+        <div class="view-stage">
+          <div class="placeholder-copy" aria-hidden="true">
+            <span class="bar short"></span>
+            <span class="bar dark full"></span>
+            <span class="bar dark long graphite"></span>
+            <div class="placeholder-row">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+            <div class="outline-control"></div>
+          </div>
+          <div class="stage-art" aria-hidden="true"></div>
+        </div>
+        <div class="continuation" aria-hidden="true">
+          <div class="empty-frame"></div>
+          <div class="continuation-copy">
+            <span class="bar short"></span>
+            <span class="bar dark full"></span>
+            <span class="bar graphite long"></span>
+            <div class="tile-row">
+              <span class="empty-tile"></span>
+              <span class="empty-tile"></span>
+              <span class="empty-tile"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-events" role="tabpanel" aria-labelledby="tab-events" data-panel="events" hidden>
+        <div class="view-stage">
+          <div class="placeholder-copy" aria-hidden="true">
+            <span class="bar short"></span>
+            <span class="bar dark full"></span>
+            <span class="bar dark medium graphite"></span>
+            <span class="bar medium"></span>
+            <div class="outline-control"></div>
+          </div>
+          <div class="stage-art event-rail" aria-hidden="true">
+            <span class="event-node"></span>
+            <span class="event-node"></span>
+            <span class="event-node"></span>
+            <span class="event-node"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-community" role="tabpanel" aria-labelledby="tab-community" data-panel="community" hidden>
+        <div class="view-stage community-layout">
+          <div class="placeholder-copy">
+            <div aria-hidden="true">
+              <span class="bar short"></span>
+              <span class="bar dark full" style="margin-top: 1rem"></span>
+              <span class="bar dark medium graphite" style="margin-top: 1rem"></span>
+              <span class="bar medium" style="margin-top: 1.4rem"></span>
+            </div>
+            <div class="upload-placeholder" role="button" tabindex="0" aria-disabled="true" aria-label="Member photo upload placeholder">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle cx="32" cy="22" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M15 53c1.5-11 8.5-17 17-17s15.5 6 17 17" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M49 13v14M42 20h14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="member-field" aria-hidden="true">
+            <span class="member-link a"></span>
+            <span class="member-link b"></span>
+            <span class="member-link c"></span>
+            <span class="member large"></span>
+            <span class="member small-a"></span>
+            <span class="member small-b"></span>
+            <span class="member small-c"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-roadmaps-projects" role="tabpanel" aria-labelledby="tab-roadmaps-projects" data-panel="roadmaps-projects" hidden>
+        <div class="view-stage">
+          <div class="placeholder-copy" aria-hidden="true">
+            <span class="bar short"></span>
+            <span class="bar dark full"></span>
+            <span class="bar dark long graphite"></span>
+            <span class="bar medium"></span>
+            <div class="outline-control"></div>
+          </div>
+          <div class="roadmap-field" aria-hidden="true">
+            <span class="roadmap-line"></span>
+            <span class="roadmap-card"></span>
+            <span class="roadmap-card"></span>
+            <span class="roadmap-card"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-knowledge-center" role="tabpanel" aria-labelledby="tab-knowledge-center" data-panel="knowledge-center" hidden>
+        <div class="view-stage">
+          <div class="placeholder-copy" aria-hidden="true">
+            <span class="bar short"></span>
+            <span class="bar dark full"></span>
+            <span class="bar dark medium graphite"></span>
+            <div class="placeholder-row">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+          </div>
+          <div class="knowledge-field" aria-hidden="true">
+            <div class="knowledge-column">
+              <span class="knowledge-block"></span>
+              <span class="knowledge-block"></span>
+              <span class="knowledge-block"></span>
+            </div>
+            <div class="knowledge-column">
+              <span class="knowledge-block"></span>
+              <span class="knowledge-block"></span>
+            </div>
+            <div class="knowledge-column">
+              <span class="knowledge-block"></span>
+              <span class="knowledge-block"></span>
+              <span class="knowledge-block"></span>
+              <span class="knowledge-block"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-open-call-2025" role="tabpanel" aria-labelledby="tab-open-call-2025" data-panel="open-call-2025" hidden>
+        <div class="view-stage file-layout">
+          <div class="placeholder-copy" aria-hidden="true">
+            <span class="bar short"></span>
+            <span class="bar dark full"></span>
+            <span class="bar dark medium graphite"></span>
+            <span class="bar medium"></span>
+          </div>
+          <div class="file-library" role="img" aria-label="Open call file library placeholder">
+            <div class="file-preview" aria-hidden="true">
+              <span class="file-sheet">
+                <span class="bar graphite full"></span>
+                <span class="bar full"></span>
+                <span class="bar medium"></span>
+              </span>
+            </div>
+            <div class="file-list" aria-hidden="true">
+              <div class="file-row">
+                <span class="file-icon"></span>
+                <span class="file-lines">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </span>
+                <span class="file-view">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 12s3.2-5 9-5 9 5 9 5-3.2 5-9 5-9-5-9-5Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                    <circle cx="12" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="file-row">
+                <span class="file-icon"></span>
+                <span class="file-lines">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </span>
+                <span class="file-view">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 12s3.2-5 9-5 9 5 9 5-3.2 5-9 5-9-5-9-5Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                    <circle cx="12" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="file-row">
+                <span class="file-icon"></span>
+                <span class="file-lines">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </span>
+                <span class="file-view">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 12s3.2-5 9-5 9 5 9 5-3.2 5-9 5-9-5-9-5Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                    <circle cx="12" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const viewIds = [
+          "home",
+          "events",
+          "community",
+          "roadmaps-projects",
+          "knowledge-center",
+          "open-call-2025"
+        ];
+
+        const header = document.getElementById("site-header");
+        const headerShell = document.getElementById("header-shell");
+        const nav = document.getElementById("primary-navigation");
+        const menuButton = document.getElementById("menu-button");
+        const tabs = [...document.querySelectorAll('[role="tab"]')];
+        const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const finePointer = window.matchMedia("(pointer: fine)");
+
+        let activeView = "home";
+        let menuOpen = false;
+        let frameRequested = false;
+        let pointerX = 0;
+        let pointerY = 0;
+        let scrollProgress = 0;
+        let naturalNavigationWidth = 0;
+
+        function setMenuState(open, restoreFocus = false) {
+          const compact = header.classList.contains("is-compact");
+          menuOpen = Boolean(open && compact);
+          header.classList.toggle("is-menu-open", menuOpen);
+          menuButton.setAttribute("aria-expanded", String(menuOpen));
+          menuButton.setAttribute("aria-label", menuOpen ? "Close navigation" : "Open navigation");
+          nav.inert = compact && !menuOpen;
+          nav.setAttribute("aria-hidden", String(compact && !menuOpen));
+
+          if (restoreFocus) {
+            menuButton.focus();
+          }
+        }
+
+        function updateActiveRail() {
+          if (header.classList.contains("is-compact")) {
+            nav.style.setProperty("--rail-opacity", "0");
+            return;
+          }
+
+          const activeTab = tabs.find((tab) => tab.dataset.view === activeView);
+          if (!activeTab) return;
+
+          const navRect = nav.getBoundingClientRect();
+          const tabRect = activeTab.getBoundingClientRect();
+          nav.style.setProperty("--rail-left", `${tabRect.left - navRect.left}px`);
+          nav.style.setProperty("--rail-width", `${tabRect.width}px`);
+          nav.style.setProperty("--rail-opacity", "1");
+        }
+
+        function activateView(viewId, options = {}) {
+          const { updateHash = true, moveFocus = false } = options;
+          const nextView = viewIds.includes(viewId) ? viewId : "home";
+          const restoreMenuFocus = menuOpen;
+
+          activeView = nextView;
+          document.body.dataset.view = nextView;
+
+          tabs.forEach((tab) => {
+            const selected = tab.dataset.view === nextView;
+            tab.setAttribute("aria-selected", String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+            if (selected && moveFocus && !restoreMenuFocus) tab.focus();
+          });
+
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.panel !== nextView;
+          });
+
+          if (updateHash && window.location.hash !== `#${nextView}`) {
+            history.pushState(null, "", `#${nextView}`);
+          }
+
+          setMenuState(false, restoreMenuFocus);
+          requestAnimationFrame(updateActiveRail);
+        }
+
+        function syncViewFromHash() {
+          const requestedView = window.location.hash.slice(1);
+          activateView(viewIds.includes(requestedView) ? requestedView : "home", {
+            updateHash: false
+          });
+        }
+
+        function measureNavigation() {
+          if (!header.classList.contains("is-compact") || naturalNavigationWidth === 0) {
+            const gap = parseFloat(getComputedStyle(nav).columnGap) || 0;
+            naturalNavigationWidth =
+              tabs.reduce((total, tab) => total + tab.getBoundingClientRect().width, 0) +
+              gap * (tabs.length - 1);
+          }
+
+          const gutter = parseFloat(getComputedStyle(document.querySelector(".brand-row")).paddingLeft) || 16;
+          const availableWidth =
+            headerShell.getBoundingClientRect().width -
+            gutter * 2;
+          const shouldCompact = naturalNavigationWidth > availableWidth;
+
+          header.classList.toggle("is-compact", shouldCompact);
+          setMenuState(shouldCompact && menuOpen);
+          requestAnimationFrame(updateActiveRail);
+        }
+
+        function updateViewpoint() {
+          frameRequested = false;
+
+          if (reduceMotion.matches) {
+            document.documentElement.style.setProperty("--pointer-x", "0");
+            document.documentElement.style.setProperty("--pointer-y", "0");
+            document.documentElement.style.setProperty("--scroll-progress", "0");
+            return;
+          }
+
+          document.documentElement.style.setProperty("--pointer-x", pointerX.toFixed(3));
+          document.documentElement.style.setProperty("--pointer-y", pointerY.toFixed(3));
+          document.documentElement.style.setProperty("--scroll-progress", scrollProgress.toFixed(3));
+        }
+
+        function requestViewpointUpdate() {
+          if (frameRequested) return;
+          frameRequested = true;
+          requestAnimationFrame(updateViewpoint);
+        }
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", () => {
+            activateView(tab.dataset.view, { moveFocus: true });
+          });
+
+          tab.addEventListener("keydown", (event) => {
+            let nextIndex = index;
+
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              nextIndex = (index + 1) % tabs.length;
+            } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+              nextIndex = (index - 1 + tabs.length) % tabs.length;
+            } else if (event.key === "Home") {
+              nextIndex = 0;
+            } else if (event.key === "End") {
+              nextIndex = tabs.length - 1;
+            } else if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              activateView(tab.dataset.view, { moveFocus: true });
+              return;
+            } else if (event.key === "Escape" && menuOpen) {
+              event.preventDefault();
+              setMenuState(false, true);
+              return;
+            } else {
+              return;
+            }
+
+            event.preventDefault();
+            tabs[nextIndex].focus();
+          });
+        });
+
+        menuButton.addEventListener("click", () => setMenuState(!menuOpen));
+
+        document.addEventListener("click", (event) => {
+          if (menuOpen && !header.contains(event.target)) {
+            setMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && menuOpen) {
+            setMenuState(false, true);
+          }
+        });
+
+        window.addEventListener("hashchange", syncViewFromHash);
+        window.addEventListener("popstate", syncViewFromHash);
+
+        window.addEventListener(
+          "pointermove",
+          (event) => {
+            if (!finePointer.matches) return;
+            pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
+            pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
+            requestViewpointUpdate();
+          },
+          { passive: true }
+        );
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            scrollProgress = Math.min(window.scrollY / scrollable, 1);
+            requestViewpointUpdate();
+          },
+          { passive: true }
+        );
+
+        reduceMotion.addEventListener("change", requestViewpointUpdate);
+        finePointer.addEventListener("change", requestViewpointUpdate);
+
+        const navigationObserver = new ResizeObserver(measureNavigation);
+        navigationObserver.observe(headerShell);
+        tabs.forEach((tab) => navigationObserver.observe(tab));
+
+        syncViewFromHash();
+        measureNavigation();
+        requestViewpointUpdate();
+      })();
+    </script>
   </body>
 </html>
