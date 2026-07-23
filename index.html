@@ -43,63 +43,94 @@
               <a class="button secondary" href="community.html">Meet the community</a>
             </div>
           </div>
-          <figure class="chain-visual" aria-labelledby="chain-visual-caption">
-            <div class="chain-visual-label"><span></span>Verifiable data network</div>
-            <svg viewBox="0 0 540 430" role="img" aria-label="A network of connected, verified biotechnology data blocks">
+          <figure class="chain-visual">
+            <svg viewBox="0 0 540 430" role="img" aria-label="A linear data chain branching into multiple connected chains">
               <defs>
                 <linearGradient id="chain-gradient" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0" stop-color="#9bd4b8"/>
                   <stop offset="0.5" stop-color="#087c4b"/>
                   <stop offset="1" stop-color="#075c3b"/>
                 </linearGradient>
-                <radialGradient id="core-gradient">
-                  <stop offset="0" stop-color="#1aa66a"/>
-                  <stop offset="1" stop-color="#075c3b"/>
-                </radialGradient>
               </defs>
               <g class="chain-grid" aria-hidden="true">
                 <path d="M40 40H500M40 120H500M40 200H500M40 280H500M40 360H500"/>
                 <path d="M80 20V410M180 20V410M280 20V410M380 20V410M480 20V410"/>
               </g>
               <g class="chain-links" aria-hidden="true">
-                <path class="chain-link" d="M102 110L222 185L326 88L446 150"/>
-                <path class="chain-link" d="M102 110L130 300L270 340L410 292L446 150"/>
-                <path class="chain-link" d="M222 185L270 340M326 88L410 292M222 185L410 292"/>
-                <path class="chain-link flow" d="M102 110L222 185L326 88L446 150L410 292L270 340L130 300L102 110"/>
+                <path class="chain-link main-chain" d="M58 215H482"/>
+                <path class="chain-link branch-chain" d="M164 215V108H270L376 68"/>
+                <path class="chain-link branch-chain" d="M270 215V325H376L482 360"/>
+                <path class="chain-link branch-chain" d="M376 215V125H482"/>
+                <path class="chain-link flow main-flow" d="M58 215H482"/>
+                <path class="chain-link flow branch-flow branch-flow-1" d="M164 215V108H270L376 68"/>
+                <path class="chain-link flow branch-flow branch-flow-2" d="M270 215V325H376L482 360"/>
+                <path class="chain-link flow branch-flow branch-flow-3" d="M376 215V125H482"/>
               </g>
               <g class="chain-blocks" aria-hidden="true">
-                <g class="chain-block block-1" transform="translate(74 82)">
-                  <rect width="56" height="56" rx="12"/><path d="M16 20h24M16 28h17M16 36h21"/>
+                <g class="chain-block main-block" transform="translate(33 190)" style="--pulse-delay: 0s">
+                  <circle class="block-pulse" cx="25" cy="25" r="32"/>
+                  <rect width="50" height="50" rx="11"/><path d="M13 19l12-6 12 6v14l-12 6-12-6Zm0 0 12 6 12-6M25 25v14"/>
                 </g>
-                <g class="chain-block block-2" transform="translate(298 60)">
-                  <rect width="56" height="56" rx="12"/><path d="M16 20h24M16 28h17M16 36h21"/>
+                <g class="chain-block main-block" transform="translate(139 190)" style="--pulse-delay: -0.45s">
+                  <circle class="block-pulse" cx="25" cy="25" r="32"/>
+                  <rect width="50" height="50" rx="11"/><path d="M13 19l12-6 12 6v14l-12 6-12-6Zm0 0 12 6 12-6M25 25v14"/>
                 </g>
-                <g class="chain-block block-3" transform="translate(418 122)">
-                  <rect width="56" height="56" rx="12"/><path d="M16 20h24M16 28h17M16 36h21"/>
+                <g class="chain-block main-block" transform="translate(245 190)" style="--pulse-delay: -0.9s">
+                  <circle class="block-pulse" cx="25" cy="25" r="32"/>
+                  <rect width="50" height="50" rx="11"/><path d="M13 19l12-6 12 6v14l-12 6-12-6Zm0 0 12 6 12-6M25 25v14"/>
                 </g>
-                <g class="chain-block block-4" transform="translate(382 264)">
-                  <rect width="56" height="56" rx="12"/><path d="M16 20h24M16 28h17M16 36h21"/>
+                <g class="chain-block main-block" transform="translate(351 190)" style="--pulse-delay: -1.35s">
+                  <circle class="block-pulse" cx="25" cy="25" r="32"/>
+                  <rect width="50" height="50" rx="11"/><path d="M13 19l12-6 12 6v14l-12 6-12-6Zm0 0 12 6 12-6M25 25v14"/>
                 </g>
-                <g class="chain-block block-5" transform="translate(242 312)">
-                  <rect width="56" height="56" rx="12"/><path d="M16 20h24M16 28h17M16 36h21"/>
+                <g class="chain-block main-block" transform="translate(457 190)" style="--pulse-delay: -1.8s">
+                  <circle class="block-pulse" cx="25" cy="25" r="32"/>
+                  <rect width="50" height="50" rx="11"/><path d="M13 19l12-6 12 6v14l-12 6-12-6Zm0 0 12 6 12-6M25 25v14"/>
                 </g>
-                <g class="chain-block block-6" transform="translate(102 272)">
-                  <rect width="56" height="56" rx="12"/><path d="M16 20h24M16 28h17M16 36h21"/>
+
+                <g class="chain-block branch-block" transform="translate(142 86)" style="--pulse-delay: -2.2s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
                 </g>
-              </g>
-              <g class="chain-core" aria-hidden="true" transform="translate(222 185)">
-                <circle cx="0" cy="0" r="49" class="core-halo"/>
-                <circle cx="0" cy="0" r="34" class="core-node"/>
-                <path d="M-13-3l9 9 18-20M-14 17h28"/>
+                <g class="chain-block branch-block" transform="translate(248 86)" style="--pulse-delay: -2.6s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
+                <g class="chain-block branch-block" transform="translate(354 46)" style="--pulse-delay: -3s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
+
+                <g class="chain-block branch-block" transform="translate(248 303)" style="--pulse-delay: -2.3s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
+                <g class="chain-block branch-block" transform="translate(354 303)" style="--pulse-delay: -2.75s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
+                <g class="chain-block branch-block" transform="translate(460 338)" style="--pulse-delay: -3.2s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
+
+                <g class="chain-block branch-block" transform="translate(354 103)" style="--pulse-delay: -2.5s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
+                <g class="chain-block branch-block" transform="translate(460 103)" style="--pulse-delay: -3s">
+                  <circle class="block-pulse" cx="22" cy="22" r="29"/>
+                  <rect width="44" height="44" rx="10"/><path d="M12 17l10-5 10 5v12l-10 6-10-6Zm0 0 10 5 10-5M22 22v13"/>
+                </g>
               </g>
               <g class="chain-particles" aria-hidden="true">
-                <circle cx="162" cy="148" r="5"/><circle cx="386" cy="119" r="5"/>
-                <circle cx="340" cy="316" r="5"/><circle cx="116" cy="205" r="5"/>
+                <circle cx="111" cy="215" r="5"/><circle cx="217" cy="215" r="5"/>
+                <circle cx="323" cy="215" r="5"/><circle cx="429" cy="215" r="5"/>
+                <circle cx="164" cy="160" r="5"/><circle cx="323" cy="88" r="5"/>
+                <circle cx="270" cy="271" r="5"/><circle cx="429" cy="343" r="5"/>
+                <circle cx="429" cy="125" r="5"/>
               </g>
             </svg>
-            <figcaption id="chain-visual-caption">
-              <span>Research data</span><span>FAIR · secure · traceable</span>
-            </figcaption>
           </figure>
         </div>
       </section>
