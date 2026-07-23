@@ -541,13 +541,13 @@ h3 {
     transform 180ms ease;
 }
 
-.partner-logo:hover {
+a.partner-logo:hover {
   border-color: rgba(8, 124, 75, 0.45);
   box-shadow: 0 12px 28px rgba(20, 72, 46, 0.1);
   transform: translateY(-2px);
 }
 
-.partner-logo:focus-visible {
+a.partner-logo:focus-visible {
   outline: 3px solid rgba(8, 124, 75, 0.25);
   outline-offset: 3px;
 }
@@ -566,6 +566,11 @@ h3 {
 
 .partner-logo-tall img {
   max-height: 88px;
+}
+
+.partner-logo-dark {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: #10272b;
 }
 
 .timeline {
@@ -649,10 +654,22 @@ h3 {
 
 .person {
   min-height: 150px;
-  padding: 1.25rem;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface);
+}
+
+.person-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.person-details {
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .person strong {
@@ -833,8 +850,9 @@ h3 {
 
 .footer-meta {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 2rem;
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid #34433a;
@@ -847,9 +865,7 @@ h3 {
   align-items: center;
   justify-content: flex-end;
   gap: 0.75rem;
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #34433a;
+  flex: 0 0 auto;
 }
 
 .funding-mark {
@@ -893,6 +909,10 @@ h3 {
 
 .linkedin-link:hover {
   color: white;
+}
+
+.footer-links .linkedin-link {
+  margin-top: 0.45rem;
 }
 
 @media (max-width: 960px) {
