@@ -702,7 +702,9 @@ a.partner-logo:focus-visible {
 .roadmap-gallery {
   display: grid;
   min-width: 0;
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
   margin-top: 2.5rem;
 }
 
@@ -720,16 +722,12 @@ a.partner-logo:focus-visible {
 .roadmap-figure a {
   display: block;
   max-width: 100%;
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
 }
 
 .roadmap-figure img {
   display: block;
   width: 100%;
+  max-width: 520px;
   height: auto;
 }
 
@@ -1138,10 +1136,13 @@ a.partner-logo:focus-visible {
     max-height: 64px;
   }
 
+  .roadmap-gallery {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
   .roadmap-figure img {
-    width: 760px;
-    min-width: 760px;
-    max-width: none;
+    max-width: 100%;
   }
 }
 
