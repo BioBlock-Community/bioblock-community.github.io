@@ -306,6 +306,14 @@ h3 {
   animation: data-flow 8s linear infinite;
 }
 
+.chain-link.main-chain {
+  stroke: #078a50;
+  stroke-width: 3.5;
+  opacity: 0.62;
+  filter: drop-shadow(0 0 4px rgba(7, 138, 80, 0.38));
+  animation: main-chain-pulse 2.6s ease-in-out infinite;
+}
+
 .chain-link.branch-chain {
   opacity: 0.34;
 }
@@ -367,6 +375,20 @@ h3 {
 @keyframes data-flow {
   to {
     stroke-dashoffset: -184;
+  }
+}
+
+@keyframes main-chain-pulse {
+  0%,
+  100% {
+    stroke-width: 3;
+    opacity: 0.45;
+    filter: drop-shadow(0 0 2px rgba(7, 138, 80, 0.2));
+  }
+  50% {
+    stroke-width: 5.5;
+    opacity: 1;
+    filter: drop-shadow(0 0 9px rgba(7, 138, 80, 0.75));
   }
 }
 
@@ -792,6 +814,59 @@ h3 {
   font-size: 0.8rem;
 }
 
+.footer-funding {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #34433a;
+}
+
+.funding-mark {
+  display: inline-flex;
+  height: 94px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.8rem;
+  overflow: hidden;
+  border-radius: 10px;
+  background: white;
+}
+
+.funding-mark img {
+  display: block;
+  width: auto;
+  max-width: 220px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.funding-mark.datipilot img {
+  max-width: 200px;
+  max-height: 58px;
+}
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #d6ded9;
+  text-decoration: none;
+}
+
+.linkedin-link svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.linkedin-link:hover {
+  color: white;
+}
+
 @media (max-width: 960px) {
   .menu-button {
     display: inline-flex;
@@ -880,6 +955,17 @@ h3 {
     display: grid;
   }
 
+  .footer-funding {
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  .funding-mark {
+    width: min(100%, 280px);
+    height: 94px;
+  }
+
   .chain-visual {
     padding: 0.8rem;
   }
@@ -891,6 +977,7 @@ h3 {
   }
 
   .chain-link.flow,
+  .chain-link.main-chain,
   .chain-block,
   .chain-block .block-pulse {
     animation: none;
