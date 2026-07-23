@@ -518,11 +518,64 @@ h3 {
   transform: translateY(0.45rem);
 }
 
+.scroll-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.scroll-controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.55rem;
+}
+
+.scroll-button {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--green-dark);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.scroll-button:hover {
+  border-color: var(--green);
+  background: var(--green);
+  color: white;
+}
+
+.scroll-button:focus-visible {
+  outline: 3px solid rgba(8, 124, 75, 0.2);
+  outline-offset: 3px;
+}
+
 .partner-logos {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-columns: minmax(230px, 280px);
+  grid-auto-flow: column;
+  grid-template-columns: none;
   gap: 1rem;
   margin-top: 2rem;
+  padding: 0.15rem 0 0.85rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(8, 124, 75, 0.45) rgba(8, 124, 75, 0.08);
+  scrollbar-width: thin;
 }
 
 .partner-logo {
@@ -535,6 +588,7 @@ h3 {
   border-radius: 16px;
   background: var(--surface);
   box-shadow: 0 8px 24px rgba(20, 51, 35, 0.035);
+  scroll-snap-align: start;
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease,
@@ -645,11 +699,51 @@ a.partner-logo:focus-visible {
   color: var(--muted);
 }
 
+.roadmap-gallery {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.roadmap-figure {
+  margin: 0;
+}
+
+.roadmap-figure figcaption {
+  margin-bottom: 0.7rem;
+  color: var(--green-dark);
+  font-weight: 720;
+}
+
+.roadmap-figure a {
+  display: block;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.roadmap-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-columns: minmax(270px, 320px);
+  grid-auto-flow: column;
+  grid-template-columns: none;
   gap: 0.8rem;
   margin-top: 2.5rem;
+  padding: 0.15rem 0 0.85rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(8, 124, 75, 0.45) rgba(8, 124, 75, 0.08);
+  scrollbar-width: thin;
 }
 
 .person {
@@ -658,6 +752,7 @@ a.partner-logo:focus-visible {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface);
+  scroll-snap-align: start;
 }
 
 .person-photo {
@@ -965,13 +1060,8 @@ a.partner-logo:focus-visible {
     width: min(100%, 620px);
   }
 
-  .card-grid,
-  .team-grid {
+  .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .partner-logos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -990,7 +1080,6 @@ a.partner-logo:focus-visible {
   }
 
   .card-grid,
-  .team-grid,
   .resource-grid,
   .glossary,
   .contact-grid,
@@ -1023,9 +1112,18 @@ a.partner-logo:focus-visible {
     margin-inline: -1rem;
   }
 
+  .scroll-section-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
   .partner-logos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: minmax(190px, 76vw);
     gap: 0.75rem;
+  }
+
+  .team-grid {
+    grid-auto-columns: minmax(240px, 82vw);
   }
 
   .partner-logo {
@@ -1035,6 +1133,12 @@ a.partner-logo:focus-visible {
 
   .partner-logo img {
     max-height: 64px;
+  }
+
+  .roadmap-figure img {
+    width: auto;
+    min-width: 760px;
+    max-width: none;
   }
 }
 
