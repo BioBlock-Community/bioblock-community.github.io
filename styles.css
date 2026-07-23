@@ -253,6 +253,202 @@ h3 {
   color: var(--muted);
 }
 
+.chain-visual {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 1.1rem 1.1rem 0.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(8, 124, 75, 0.2);
+  border-radius: calc(var(--radius) + 8px);
+  background:
+    radial-gradient(circle at 44% 48%, rgba(8, 124, 75, 0.12), transparent 34%),
+    rgba(255, 255, 255, 0.8);
+  box-shadow: 0 28px 70px rgba(20, 72, 46, 0.14);
+  isolation: isolate;
+}
+
+.chain-visual::before {
+  position: absolute;
+  z-index: -1;
+  inset: 16% 19%;
+  border-radius: 50%;
+  background: rgba(8, 124, 75, 0.08);
+  filter: blur(34px);
+  content: "";
+}
+
+.chain-visual-label {
+  position: absolute;
+  z-index: 2;
+  top: 1.1rem;
+  left: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(8, 124, 75, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--green-dark);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chain-visual-label span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #19a669;
+  box-shadow: 0 0 0 4px rgba(25, 166, 105, 0.14);
+  animation: status-pulse 2.2s ease-in-out infinite;
+}
+
+.chain-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chain-grid path {
+  fill: none;
+  stroke: rgba(8, 124, 75, 0.08);
+  stroke-width: 1;
+}
+
+.chain-link {
+  fill: none;
+  stroke: url("#chain-gradient");
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  opacity: 0.48;
+}
+
+.chain-link.flow {
+  stroke-width: 2.6;
+  stroke-dasharray: 8 15;
+  opacity: 0.85;
+  animation: data-flow 8s linear infinite;
+}
+
+.chain-block rect {
+  fill: rgba(255, 255, 255, 0.96);
+  stroke: #087c4b;
+  stroke-width: 1.6;
+}
+
+.chain-block path {
+  fill: none;
+  stroke: #087c4b;
+  stroke-linecap: round;
+  stroke-width: 2;
+  opacity: 0.7;
+}
+
+.chain-block {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: block-float 4.8s ease-in-out infinite;
+}
+
+.chain-block.block-2,
+.chain-block.block-5 {
+  animation-delay: -1.6s;
+}
+
+.chain-block.block-3,
+.chain-block.block-6 {
+  animation-delay: -3.2s;
+}
+
+.core-halo {
+  fill: none;
+  stroke: rgba(8, 124, 75, 0.2);
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: core-pulse 3s ease-out infinite;
+}
+
+.core-node {
+  fill: url("#core-gradient");
+  stroke: rgba(255, 255, 255, 0.82);
+  stroke-width: 3;
+  filter: drop-shadow(0 10px 18px rgba(7, 92, 59, 0.26));
+}
+
+.chain-core path {
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.chain-particles circle {
+  fill: #087c4b;
+  stroke: white;
+  stroke-width: 3;
+  filter: drop-shadow(0 3px 5px rgba(7, 92, 59, 0.2));
+}
+
+.chain-visual figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0.35rem 0.15rem;
+  border-top: 1px solid rgba(8, 124, 75, 0.12);
+  color: var(--muted);
+  font-size: 0.73rem;
+}
+
+.chain-visual figcaption span:last-child {
+  color: var(--green-dark);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@keyframes data-flow {
+  to {
+    stroke-dashoffset: -184;
+  }
+}
+
+@keyframes block-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes core-pulse {
+  0% {
+    opacity: 0.6;
+    scale: 0.75;
+  }
+  75%,
+  100% {
+    opacity: 0;
+    scale: 1.35;
+  }
+}
+
+@keyframes status-pulse {
+  50% {
+    box-shadow: 0 0 0 7px rgba(25, 166, 105, 0.04);
+  }
+}
+
 .section {
   padding: clamp(4rem, 8vw, 7rem) 0;
 }
@@ -699,6 +895,10 @@ h3 {
     max-width: 540px;
   }
 
+  .chain-visual {
+    width: min(100%, 620px);
+  }
+
   .card-grid,
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -736,10 +936,32 @@ h3 {
   .footer-meta {
     display: grid;
   }
+
+  .chain-visual {
+    padding: 0.8rem 0.8rem 0.65rem;
+  }
+
+  .chain-visual-label {
+    top: 0.8rem;
+    left: 0.8rem;
+  }
+
+  .chain-visual figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .chain-visual-label span,
+  .chain-link.flow,
+  .chain-block,
+  .core-halo {
+    animation: none;
   }
 }
