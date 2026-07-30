@@ -227,7 +227,10 @@
     </figure>
   `;
 
-  if (/\/event-[^/]+\.html$/.test(window.location.pathname)) {
+  if (
+    /\/event-[^/]+\.html$/.test(window.location.pathname) &&
+    !document.querySelector("main article")
+  ) {
     const main = document.querySelector("main");
     const hero = main?.querySelector(".hero");
     const heroShell = hero?.querySelector(".shell");
