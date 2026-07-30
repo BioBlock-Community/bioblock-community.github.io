@@ -159,8 +159,11 @@ main {
 
 .hero {
   position: relative;
+  display: flex;
+  height: 600px;
+  align-items: center;
   overflow: hidden;
-  padding: clamp(5rem, 11vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
+  padding: 5rem 0;
   border-bottom: 1px solid var(--line);
   background:
     radial-gradient(circle at 78% 30%, rgba(8, 124, 75, 0.13), transparent 28rem),
@@ -168,17 +171,180 @@ main {
 }
 
 .hero::after {
+  content: none;
+}
+
+.has-bioblock-motif > .shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding-right: min(48%, 620px);
+}
+
+.has-bioblock-motif > .hero-grid {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+.bioblock-motif {
   position: absolute;
-  right: -4rem;
-  bottom: -9rem;
-  width: min(46vw, 620px);
-  height: min(46vw, 620px);
-  border: 1px solid rgba(8, 124, 75, 0.2);
+  top: 50%;
+  right: 0;
+  width: min(48%, 620px);
+  margin: 0;
+  color: var(--green);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.bioblock-motif::before {
+  position: absolute;
+  inset: 18% 12%;
   border-radius: 50%;
-  box-shadow:
-    0 0 0 58px rgba(8, 124, 75, 0.035),
-    0 0 0 116px rgba(8, 124, 75, 0.025);
+  background: rgba(8, 124, 75, 0.1);
+  filter: blur(45px);
   content: "";
+}
+
+.bioblock-motif svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chain-grid path {
+  fill: none;
+  stroke: rgba(8, 124, 75, 0.08);
+  stroke-width: 1;
+}
+
+.chain-link {
+  fill: none;
+  stroke: url("#chain-gradient");
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  opacity: 0.48;
+}
+
+.chain-link.flow {
+  stroke-width: 2.6;
+  stroke-dasharray: 8 15;
+  opacity: 0.85;
+  animation: data-flow 8s linear infinite;
+}
+
+.chain-link.main-chain {
+  stroke: #078a50;
+  stroke-width: 3.5;
+  opacity: 0.62;
+  filter: drop-shadow(0 0 4px rgba(7, 138, 80, 0.38));
+  animation: main-chain-pulse 2.6s ease-in-out infinite;
+}
+
+.chain-link.branch-chain {
+  opacity: 0.34;
+}
+
+.chain-link.branch-flow {
+  animation-duration: 6.5s;
+}
+
+.chain-link.branch-flow-1 {
+  animation-delay: -1.3s;
+}
+
+.chain-link.branch-flow-2 {
+  animation-delay: -3.5s;
+}
+
+.chain-link.branch-flow-3 {
+  animation-delay: -5s;
+}
+
+.chain-block rect {
+  fill: rgba(255, 255, 255, 0.97);
+  stroke: #087c4b;
+  stroke-width: 1.6;
+}
+
+.chain-block .block-pulse {
+  fill: rgba(8, 124, 75, 0.08);
+  stroke: rgba(8, 124, 75, 0.3);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: block-pulse 4s ease-out infinite;
+  animation-delay: var(--pulse-delay, 0s);
+}
+
+.chain-block {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: block-float 4s ease-in-out infinite;
+  animation-delay: var(--pulse-delay, 0s);
+  filter: drop-shadow(0 7px 10px rgba(7, 92, 59, 0.12));
+}
+
+.chain-block .block-biotech-icon {
+  color: #087c4b;
+}
+
+.chain-particles circle {
+  fill: #087c4b;
+  stroke: white;
+  stroke-width: 3;
+  filter: drop-shadow(0 3px 5px rgba(7, 92, 59, 0.2));
+}
+
+@keyframes data-flow {
+  to {
+    stroke-dashoffset: -184;
+  }
+}
+
+@keyframes main-chain-pulse {
+  0%,
+  100% {
+    stroke-width: 3;
+    opacity: 0.45;
+    filter: drop-shadow(0 0 2px rgba(7, 138, 80, 0.2));
+  }
+  50% {
+    stroke-width: 5.5;
+    opacity: 1;
+    filter: drop-shadow(0 0 9px rgba(7, 138, 80, 0.75));
+  }
+}
+
+@keyframes block-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes block-pulse {
+  0% {
+    opacity: 0.8;
+    scale: 0.72;
+  }
+  65%,
+  100% {
+    opacity: 0;
+    scale: 1.28;
+  }
 }
 
 .hero-grid {
@@ -232,180 +398,6 @@ h3 {
   color: var(--muted);
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   line-height: 1.55;
-}
-
-.hero-note {
-  padding: 1.4rem;
-  border: 1px solid rgba(8, 124, 75, 0.18);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: var(--shadow);
-}
-
-.hero-note strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--green-dark);
-}
-
-.hero-note p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.chain-visual {
-  position: relative;
-  min-width: 0;
-  margin: 0;
-  overflow: visible;
-}
-
-.chain-visual::before {
-  position: absolute;
-  inset: 18% 12%;
-  border-radius: 50%;
-  background: rgba(8, 124, 75, 0.1);
-  filter: blur(45px);
-  content: "";
-  pointer-events: none;
-}
-
-.chain-visual svg {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.chain-grid path {
-  fill: none;
-  stroke: rgba(8, 124, 75, 0.08);
-  stroke-width: 1;
-}
-
-.chain-link {
-  fill: none;
-  stroke: url("#chain-gradient");
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  opacity: 0.48;
-}
-
-.chain-link.flow {
-  stroke-width: 2.6;
-  stroke-dasharray: 8 15;
-  opacity: 0.85;
-  animation: data-flow 8s linear infinite;
-}
-
-.chain-link.main-chain {
-  stroke: #078a50;
-  stroke-width: 3.5;
-  opacity: 0.62;
-  filter: drop-shadow(0 0 4px rgba(7, 138, 80, 0.38));
-  animation: main-chain-pulse 2.6s ease-in-out infinite;
-}
-
-.chain-link.branch-chain {
-  opacity: 0.34;
-}
-
-.chain-link.branch-flow {
-  animation-duration: 6.5s;
-}
-
-.chain-link.branch-flow-1 {
-  animation-delay: -1.5s;
-}
-
-.chain-link.branch-flow-2 {
-  animation-delay: -3.5s;
-}
-
-.chain-link.branch-flow-3 {
-  animation-delay: -5s;
-}
-
-.chain-block rect {
-  fill: rgba(255, 255, 255, 0.96);
-  stroke: #087c4b;
-  stroke-width: 1.6;
-}
-
-.chain-block path {
-  fill: none;
-  stroke: #087c4b;
-  stroke-linecap: round;
-  stroke-width: 2;
-  opacity: 0.7;
-}
-
-.chain-block .block-pulse {
-  fill: rgba(8, 124, 75, 0.08);
-  stroke: rgba(8, 124, 75, 0.3);
-  stroke-width: 1.5;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: block-pulse 4s ease-out infinite;
-  animation-delay: var(--pulse-delay, 0s);
-}
-
-.chain-block {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: block-float 4s ease-in-out infinite;
-  animation-delay: var(--pulse-delay, 0s);
-}
-
-.chain-particles circle {
-  fill: #087c4b;
-  stroke: white;
-  stroke-width: 3;
-  filter: drop-shadow(0 3px 5px rgba(7, 92, 59, 0.2));
-}
-
-@keyframes data-flow {
-  to {
-    stroke-dashoffset: -184;
-  }
-}
-
-@keyframes main-chain-pulse {
-  0%,
-  100% {
-    stroke-width: 3;
-    opacity: 0.45;
-    filter: drop-shadow(0 0 2px rgba(7, 138, 80, 0.2));
-  }
-  50% {
-    stroke-width: 5.5;
-    opacity: 1;
-    filter: drop-shadow(0 0 9px rgba(7, 138, 80, 0.75));
-  }
-}
-
-@keyframes block-float {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -7px;
-  }
-}
-
-@keyframes block-pulse {
-  0% {
-    opacity: 0.8;
-    scale: 0.72;
-  }
-  65%,
-  100% {
-    opacity: 0;
-    scale: 1.28;
-  }
 }
 
 .section {
@@ -1094,6 +1086,11 @@ a.partner-logo:focus-visible {
 }
 
 @media (max-width: 960px) {
+  .hero {
+    height: 660px;
+    padding: 4rem 0;
+  }
+
   .menu-button {
     display: inline-flex;
   }
@@ -1133,14 +1130,6 @@ a.partner-logo:focus-visible {
   .hero-grid,
   .section-heading {
     grid-template-columns: 1fr;
-  }
-
-  .hero-note {
-    max-width: 540px;
-  }
-
-  .chain-visual {
-    width: min(100%, 620px);
   }
 
   .card-grid {
@@ -1218,11 +1207,6 @@ a.partner-logo:focus-visible {
     height: 94px;
   }
 
-  .chain-visual {
-    width: calc(100% + 2rem);
-    margin-inline: -1rem;
-  }
-
   .scroll-section-heading {
     align-items: start;
     flex-direction: column;
@@ -1253,6 +1237,28 @@ a.partner-logo:focus-visible {
 
   .roadmap-figure img {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    height: 860px;
+    padding: 4rem 0;
+  }
+
+  .has-bioblock-motif > .shell {
+    height: 100%;
+    min-height: 0;
+    padding-right: 0;
+  }
+
+  .bioblock-motif {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(100%, 620px);
+    margin: 2.5rem auto -1rem;
+    transform: none;
   }
 }
 
