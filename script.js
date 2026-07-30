@@ -227,6 +227,37 @@
     </figure>
   `;
 
+  if (/\/event-[^/]+\.html$/.test(window.location.pathname)) {
+    const main = document.querySelector("main");
+    const hero = main?.querySelector(".hero");
+    const heroShell = hero?.querySelector(".shell");
+    const eventDate = heroShell?.querySelector(".eyebrow");
+    const eventTitle = heroShell?.querySelector("h1");
+    const eventSummary = heroShell?.querySelector(".lede");
+
+    if (main && hero && heroShell && eventDate && eventTitle && eventSummary) {
+      const article = document.createElement("article");
+      const articleContent = document.createElement("div");
+      const articleTitle = document.createElement("h2");
+
+      article.className = "section";
+      articleContent.className = "narrow";
+      articleTitle.textContent = eventTitle.textContent;
+      articleContent.append(eventDate, articleTitle, eventSummary);
+      article.append(articleContent);
+
+      heroShell.innerHTML = `
+        <p class="eyebrow">BioBlock calendar</p>
+        <h1>Events</h1>
+        <p class="lede">Project milestones, calls for proposals, and meetings of the BioBlock community.</p>
+      `;
+      hero.insertAdjacentElement("afterend", article);
+
+      const eventsLink = document.querySelector('.site-nav a[href="events.html"]');
+      eventsLink?.setAttribute("aria-current", "page");
+    }
+  }
+
   document.querySelectorAll(".hero").forEach((hero) => {
     const shell = Array.from(hero.children).find((child) => child.classList.contains("shell"));
     if (!shell) return;
