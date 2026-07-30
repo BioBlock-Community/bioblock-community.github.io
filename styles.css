@@ -720,16 +720,52 @@ a.partner-logo:focus-visible {
 }
 
 .project {
-  padding: clamp(2rem, 5vw, 3.2rem) 0;
+  padding: 0;
 }
 
 .project + .project {
   border-top: 1px solid var(--line);
 }
 
-.project h2 {
+.project summary {
+  position: relative;
+  display: block;
+  padding: clamp(2rem, 5vw, 3.2rem) 3rem clamp(2rem, 5vw, 3.2rem) 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.project summary::-webkit-details-marker {
+  display: none;
+}
+
+.project summary::after {
+  position: absolute;
+  top: 50%;
+  right: 0.35rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  content: "";
+  transition: transform 160ms ease;
+}
+
+.project[open] summary::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+
+.project-heading {
+  display: block;
   max-width: 900px;
   font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 720;
+  line-height: 1.1;
+}
+
+.project-content {
+  padding: 0 0 clamp(2rem, 5vw, 3.2rem);
 }
 
 .project-title-original {
