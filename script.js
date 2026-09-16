@@ -16,7 +16,7 @@
             <li><a href="knowledge-center.html">Knowledge Center</a></li>
           </ul>
           <ul class="footer-links">
-            <li><a href="call-2025.html">Open Call 2025</a></li>
+            <li><a href="call-2026.html">Call for Proposals 2026</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="privacy-policy.html">Privacy Policy</a></li>
