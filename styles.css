@@ -96,6 +96,29 @@ img {
   color: var(--green);
 }
 
+.site-header .brand {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.05rem;
+  letter-spacing: normal;
+}
+
+.brand-logo {
+  display: block;
+  width: 172px;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.brand-subtitle {
+  padding-left: 0.1rem;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+}
+
 .site-nav ul {
   display: flex;
   align-items: center;
@@ -1136,6 +1159,14 @@ a.partner-logo:focus-visible {
 
   .brand-mark {
     font-size: 1.1rem;
+  }
+
+  .site-header .brand > .brand-subtitle {
+    display: block;
+  }
+
+  .brand-logo {
+    width: 168px;
   }
 
   .card-grid,
