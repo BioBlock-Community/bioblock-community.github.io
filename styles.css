@@ -728,7 +728,7 @@ a.partner-logo:focus-visible {
 .project summary {
   position: relative;
   display: block;
-  padding: clamp(2rem, 5vw, 3.2rem) 3rem clamp(2rem, 5vw, 3.2rem) 0;
+  padding: clamp(1.15rem, 2.5vw, 1.65rem) 2.5rem clamp(1.15rem, 2.5vw, 1.65rem) 0;
   cursor: pointer;
   list-style: none;
 }
@@ -757,13 +757,17 @@ a.partner-logo:focus-visible {
 .project-heading {
   display: block;
   max-width: 900px;
-  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.25rem, 2.25vw, 1.75rem);
   font-weight: 720;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .project-content {
-  padding: 0 0 clamp(2rem, 5vw, 3.2rem);
+  padding: 0 0 clamp(1.25rem, 2.5vw, 1.8rem);
+}
+
+.project summary .eyebrow {
+  margin-bottom: 0.4rem;
 }
 
 .project-title-original {
