@@ -605,7 +605,7 @@ a.partner-logo:focus-visible {
 .timeline {
   position: relative;
   display: grid;
-  gap: 2.2rem;
+  gap: 1.2rem;
   margin: 2.5rem 0 0;
   padding: 0;
   list-style: none;
@@ -1160,6 +1160,7 @@ a.partner-logo:focus-visible {
 
   .timeline time {
     grid-column: 1;
+    grid-row: auto;
     justify-self: start;
     padding: 0;
     border: 0;
@@ -1170,6 +1171,7 @@ a.partner-logo:focus-visible {
   .timeline li:nth-child(odd) > div,
   .timeline li:nth-child(even) > div {
     grid-column: 1;
+    grid-row: auto;
     padding: 1.2rem;
   }
 
