@@ -293,6 +293,13 @@
     });
   });
 
+  document.querySelectorAll(".timeline-project-link").forEach((projectLink) => {
+    projectLink.addEventListener("click", () => {
+      const project = document.querySelector(projectLink.hash);
+      if (project instanceof HTMLDetailsElement) project.open = true;
+    });
+  });
+
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.querySelectorAll("[data-scroll-button]").forEach((scrollButton) => {
