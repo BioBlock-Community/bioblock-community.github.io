@@ -593,7 +593,7 @@ h3 {
   padding: 1.25rem;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: var(--surface);
+  background: #eef1ef;
   box-shadow: 0 8px 24px rgba(20, 51, 35, 0.035);
   transition:
     border-color 180ms ease,
@@ -618,11 +618,11 @@ a.partner-logo:focus-visible {
   max-width: min(100%, 150px);
   max-height: 72px;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
-.partner-logo-dark {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: #10272b;
+.partner-logo-monochrome img {
+  filter: brightness(0) saturate(100%);
 }
 
 .timeline {
