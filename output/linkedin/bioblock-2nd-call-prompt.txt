@@ -1,0 +1,11 @@
+Use case: ads-marketing.
+Create a polished, restrained and factual English LinkedIn announcement graphic, square 1:1 high resolution. White background, black/charcoal text, subtle pale mint elements and precise BioBlock leaf green #20A783 accents. Clean editorial scientific institutional design, no stock photos, no gradients, no 3D, no busy decorations.
+Input image is the official BioBlock logo, a supporting compositing input: reproduce it faithfully, preserve its unique black split lettering and green leaf, with no modifications, small and in the upper left with ample white space.
+Large primary headline, exact text: "2nd BioBlock Call for Proposals". Break naturally across two lines below logo, left aligned.
+Below it, five well-spaced numbered challenge rows, each substantially smaller than headline yet legible on LinkedIn. Small green numbers 01–05, fine pale green separators, dark text. Use these exact challenge names, allowing natural multiline wrapping:
+"BioBlock Community Knowledge Base"
+"AI Tool for FAIR Data Generation"
+"Agentic-AI Negotiation, Dispute Resolution and Copyright Protection for Data Trading through Smart Contracts"
+"Community-Driven Metadata and Data Standards for Bioprocess Engineering"
+"Legal, Regulatory and Cybersecurity Framework for Trusted Data Exchange"
+Strong typographic hierarchy, generous consistent margins, carefully balanced whitespace. All five rows must fit fully, no clipping. The third row can take three lines; avoid tiny text. No additional text, logos, slogans or icons. Flat finished graphic, not a mockup.

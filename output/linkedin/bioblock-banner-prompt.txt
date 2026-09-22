@@ -1,0 +1,10 @@
+Use case: ads-marketing. Create a finished panoramic LinkedIn COMPANY PAGE COVER BANNER, exceptionally wide and shallow, target aspect ratio 6:1 (e.g. 3600x600). Not a square social post. Restrained scientific institutional graphic, clean white background, very subtle pale mint leaf motif at far right, pure solid BioBlock green #20A783 accent with absolutely no mottling, grain, texture, shading or gradients.
+Use supplied image 1 as official BioBlock logo, reproduce faithfully; image 2 as official DATIpilot logo, preserve its purple and proportions, omit the transparent outer margins.
+Composition: generous 5% outer safe margins. Left branding zone occupies 25% of width with BioBlock logo near top half, smaller DATIpilot logo below. Keep lower-left edge free of important text to allow page avatar overlay. Main information occupies middle/right 70% of width, clean left-aligned typography:
+Small green plain text "Open for Applications"
+Large black bold headline EXACT "2nd BioBlock Call for Proposals"
+Below, clear dark text EXACT "21 September – 29 October 2026"
+Below that, smaller black text EXACT "bioblock-community.org/call-2026.html"
+No challenge list, no extra copy. The entire layout must fit a shallow cover strip, not a tall poster. All logos and text fully visible with generous breathing room, main headline on ONE line if possible. No fake buttons, no clickable-looking elements. High-resolution sharp flat graphic, solid uniform fills like digital typesetting.
+
+Postprocessing: cropped and resized to 2256 x 382 pixels; green foreground color flattened directly to #20A783.
