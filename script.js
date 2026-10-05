@@ -31,8 +31,8 @@
         <div class="footer-meta">
           <span>© 2026 BioBlock. All rights reserved.</span>
           <div class="footer-funding" aria-label="Funded by DATIpilot and BMFTR">
-            <span class="funding-mark datipilot"><img src="assets/funding/datipilot-logo.png" alt="DATIpilot"></span>
-            <span class="funding-mark"><img src="assets/funding/bmftr-logo.jpg" alt="Federal Ministry of Research, Technology and Space"></span>
+            <a class="funding-mark datipilot" href="https://www.bmftr.bund.de/DE/Forschung/TransferInDiePraxis/Datipilot/datipilot_node.html" target="_blank" rel="noopener noreferrer"><img src="assets/funding/datipilot-logo.png" alt="DATIpilot"></a>
+            <a class="funding-mark bmftr" href="https://www.bmftr.bund.de/DE/Home/home_node.html" target="_blank" rel="noopener noreferrer"><img src="assets/funding/bmftr-logo.jpg" alt="Federal Ministry of Research, Technology and Space"></a>
           </div>
         </div>
       </div>
